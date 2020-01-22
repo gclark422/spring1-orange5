@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?><_ROOT_ EMVERSION="15.1" ORIENTATION="VERTICAL">
+<Workspace>
+<NODES>
+<NODE CLASS="SASHELP.EMMDFY.EMDROP.CLASS" COMPONENT="Drop" ID="Drop" X="83" Y="50" DESCRIPTION="Drop" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="MODIFY" TOOLPREFIX="Drop">
+<PROPERTIES DropFromTable="N" DropHidden="Y" DropInput="N" DropTarget="N" DropRejected="Y" DropAssess="N" DropPredict="N" DropFreq="N" DropClassification="N" DropResidual="N" DropOther="N" ForceRun="N" RunAction="Train" Component="Drop">
+<VariableProperties/>
+<EmVariableAttributes>
+<DELTA Variable="STATUS" AttributeName="DROP" AttributeValue="Y"/>
+</EmVariableAttributes>
+<EmTargetAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMMDFY.EMDROP.CLASS" COMPONENT="Drop" ID="Drop2" X="425" Y="287" DESCRIPTION="Drop" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="MODIFY" TOOLPREFIX="Drop">
+<PROPERTIES DropFromTable="N" DropHidden="Y" DropInput="N" DropTarget="N" DropRejected="Y" DropAssess="N" DropPredict="N" DropFreq="N" DropClassification="N" DropResidual="N" DropOther="N" ForceRun="N" RunAction="Train" Component="Drop">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes>
+<DELTA Variable="STATUS" AttributeName="DROP" AttributeValue="Y"/>
+</EmVariableAttributes>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMCORE.EXTENSION.CLASS" COMPONENT="IGN" ID="IGN" X="199" Y="188" DESCRIPTION="Interactive Grouping (IG)" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="CREDSCORE" TOOLPREFIX="IGN">
+<PROPERTIES Location="CATALOG" Catalog="SASHELP.EMCREDIT.IGN.SOURCE" ApplyLevelRule="N" BinMethod="BUCKET" NumBins="20" UseCodes="N" Freeze="N" ImportWoe="NONE" WoeAdjust="Y" AdjustFactor="0.5" ApplyMinDist="Y" MinDistMethod="PERCENT" MinPercentDist="5.0" MinCountDist="." Criterion="PROBCHISQ" MissingValue="SEPARATEIFANY" MinCatSize="5" MaxBranch="20" Precision="2" GroupInt="OPTIMAL" GroupOrd="OPTIMAL" CreateGrouping="N" CreateMethod="OVERWRITE" ImportGrouping="N" VarSelMethod="INFOVAL" GiniCutoff="20" InfoValCutoff="0.1" GrpMsmnt="ORDINAL" MaxVar="10" ApplyMonotonicity="Y" ApplyMinNumNonEvent="Y" ApplyMinNumEvent="Y" ApplyMaxBinTotal="Y" ApplyMinBinDiff="Y" ApplyMinNumBins="Y" MinNumNonEvent="1" MinNumEvent="1" MaxBinTotal="23250" MinBinDiff="0.01" MinNumBins="2" ForceRun="N" RunAction="Train" Component="IGN" CodesData="" ImportData="" DataNeeded="Y" ApplyMaxBinWidth="N" MaxBinWidth="." ApplyMinBinWidth="N" MinBinWidth="." USERMAX="1" USERMIN="0" NodeSample="20000" USERCUTVALUE="0.20" ALLOWOOB="N" RandomSeed="12345" INTTARGETMETHOD="DUPFREQ" TARGETBOUNDS="N">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<USERTRAINCODE Type="EXTERNAL" Extension="sas">
+<Data/>
+</USERTRAINCODE>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMCORE.EXTENSION.CLASS" COMPONENT="IGN" ID="IGN2" X="366" Y="517" DESCRIPTION="IG with rejects included" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="CREDSCORE" TOOLPREFIX="IGN">
+<PROPERTIES Location="CATALOG" Catalog="SASHELP.EMCREDIT.IGN.SOURCE" ApplyLevelRule="N" BinMethod="BUCKET" NumBins="20" UseCodes="N" Freeze="N" ImportWoe="NONE" WoeAdjust="Y" AdjustFactor="0.5" ApplyMinDist="Y" MinDistMethod="PERCENT" MinPercentDist="5" MinCountDist="." Criterion="ENTROPY" MissingValue="SEPARATEIFANY" MinCatSize="5" MaxBranch="10" Precision="2" GroupInt="OPTIMAL" GroupOrd="OPTIMAL" CreateGrouping="N" CreateMethod="OVERWRITE" ImportGrouping="N" VarSelMethod="INFOVAL" GiniCutoff="20" InfoValCutoff="0.1" GrpMsmnt="ORDINAL" MaxVar="10" ApplyMonotonicity="Y" ApplyMinNumNonEvent="Y" ApplyMinNumEvent="Y" ApplyMaxBinTotal="Y" ApplyMinBinDiff="Y" ApplyMinNumBins="Y" MinNumNonEvent="1" MinNumEvent="1" MaxBinTotal="23250" MinBinDiff="0.01" MinNumBins="2" ForceRun="N" RunAction="Train" Component="IGN" CodesData="" ImportData="" DataNeeded="Y" ApplyMaxBinWidth="N" MaxBinWidth="." ApplyMinBinWidth="N" MinBinWidth="." USERMAX="1" USERMIN="0" NodeSample="20000" USERCUTVALUE="0.20" ALLOWOOB="N" RandomSeed="12345" INTTARGETMETHOD="DUPFREQ" TARGETBOUNDS="N">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<USERTRAINCODE Type="EXTERNAL" Extension="sas">
+<Data/>
+</USERTRAINCODE>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMSAMP.IDS.CLASS" COMPONENT="DataSource" ID="Ids" X="321" Y="25" DESCRIPTION="ACCEPTED_CUSTOMERS" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="SAMPLE" TOOLPREFIX="Ids">
+<PROPERTIES DataSource="acceptedcustomers" Scope="LOCAL" Role="RAW" Library="FINANCE" Table="ACCEPTED_CUSTOMERS" NCols="26" NObs="3000" NBytes="1033216" Segment="" DataSourceRole="RAW" OutputType="VIEW" ForceRun="N" ComputeStatistics="N" DataSelection="DATASOURCE" NewTable="" MetaAdvisor="BASIC" ApplyIntervalLevelLowerLimit="Y" IntervalLowerLimit="20" ApplyMaxPercentMissing="Y" MaxPercentMissing="50" ApplyMaxClassLevels="Y" MaxClassLevels="20" IdentifyEmptyColumns="Y" VariableValidation="STRICT" NewVariableRole="REJECT" DropMapVariables="Y" DsId="acceptedcustomers" DsSampleName="" DsSampleSizeType="" DsSampleSize="" DsCreatedBy="andre" DsCreateDate="1895150319.7" DsModifiedBy="andre" DsModifyDate="1895150319.8" DsScope="LOCAL" Sample="D" SampleSizeType="PERCENT" SampleSizePercent="20" SampleSizeObs="10000" DBPassThrough="Y" RunAction="Train" Component="DataSource" Description="">
+<VariableProperties/>
+<EmVariableAttributes>
+<DELTA Variable="AGE" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="AGE" AttributeName="DROP" AttributeValue="Y"/>
+<DELTA Variable="GB" AttributeName="ROLE" AttributeValue="TARGET"/>
+<DELTA Variable="GB" AttributeName="LEVEL" AttributeValue="BINARY"/>
+<DELTA Variable="NAT" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="NAT" AttributeName="DROP" AttributeValue="Y"/>
+<DELTA Variable="_freq_" AttributeName="ROLE" AttributeValue="FREQ"/>
+</EmVariableAttributes>
+<EmTargetAttributes>
+<GB>
+<DecData Table="EMWS1.Ids_GB_DD">
+<Data>
+<Obs GB="1" COUNT="1500" DATAPRIOR="0.0322580645" TRAINPRIOR="0.0322580645" DECPRIOR="." DECISION1="1" DECISION2="0"/>
+<Obs GB="0" COUNT="45000" DATAPRIOR="0.9677419355" TRAINPRIOR="0.9677419355" DECPRIOR="." DECISION1="0" DECISION2="1"/>
+</Data>
+<Metadata>
+<Variable NAME="GB" LABEL="" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="COUNT" LABEL="Level Counts" LENGTH="8" FORMAT="10." TYPE="N"/>
+<Variable NAME="DATAPRIOR" LABEL="Data Proportions" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="TRAINPRIOR" LABEL="Training Proportions" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="DECPRIOR" LABEL="Decision Priors" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="DECISION1" LABEL="1" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="DECISION2" LABEL="0" LENGTH="8" FORMAT="" TYPE="N"/>
+</Metadata>
+</DecData>
+<DecMeta Table="EMWS1.Ids_GB_DM">
+<Data>
+<Obs _TYPE_="MATRIX" VARIABLE="" LABEL="" LEVEL="PROFIT" EVENT="" ORDER="" FORMAT="" TYPE="" COST="" USE="N"/>
+<Obs _TYPE_="TARGET" VARIABLE="GB" LABEL="Good/Bad" LEVEL="BINARY" EVENT="1" ORDER="" FORMAT="BEST12.0" TYPE="N" COST="" USE=""/>
+<Obs _TYPE_="DECISION" VARIABLE="DECISION1" LABEL="1" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="Y"/>
+<Obs _TYPE_="DECISION" VARIABLE="DECISION2" LABEL="0" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="Y"/>
+<Obs _TYPE_="DATAPRIOR" VARIABLE="DATAPRIOR" LABEL="Data Prior" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="N"/>
+<Obs _TYPE_="TRAINPRIOR" VARIABLE="TRAINPRIOR" LABEL="Training Prior" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="N"/>
+<Obs _TYPE_="DECPRIOR" VARIABLE="DECPRIOR" LABEL="Decision Prior" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE="N"/>
+<Obs _TYPE_="PREDICTED" VARIABLE="P_GB1" LABEL="Predicted: GB=1" LEVEL="1" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE=""/>
+<Obs _TYPE_="RESIDUAL" VARIABLE="R_GB1" LABEL="Residual: GB=1" LEVEL="1" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE=""/>
+<Obs _TYPE_="PREDICTED" VARIABLE="P_GB0" LABEL="Predicted: GB=0" LEVEL="0" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE=""/>
+<Obs _TYPE_="RESIDUAL" VARIABLE="R_GB0" LABEL="Residual: GB=0" LEVEL="0" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE=""/>
+<Obs _TYPE_="FROM" VARIABLE="F_GB" LABEL="From: GB" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="C" COST="" USE=""/>
+<Obs _TYPE_="INTO" VARIABLE="I_GB" LABEL="Into: GB" LEVEL="" EVENT="" ORDER="" FORMAT="" TYPE="C" COST="" USE=""/>
+<Obs _TYPE_="FREQ" VARIABLE="_freq_" LABEL="" LEVEL="INTERVAL" EVENT="" ORDER="" FORMAT="" TYPE="N" COST="" USE=""/>
+</Data>
+<Metadata>
+<Variable NAME="_TYPE_" LABEL="Type" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="VARIABLE" LABEL="Variable" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="LABEL" LABEL="Label" LENGTH="256" FORMAT="" TYPE="C"/>
+<Variable NAME="LEVEL" LABEL="Measurement Level" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="EVENT" LABEL="Target Event" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="ORDER" LABEL="Order" LENGTH="10" FORMAT="" TYPE="C"/>
+<Variable NAME="FORMAT" LABEL="Format" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="TYPE" LABEL="Type" LENGTH="1" FORMAT="" TYPE="C"/>
+<Variable NAME="COST" LABEL="Cost" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="USE" LABEL="Use" LENGTH="1" FORMAT="" TYPE="C"/>
+</Metadata>
+</DecMeta>
+</GB>
+</EmTargetAttributes>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMSAMP.IDS.CLASS" COMPONENT="DataSource" ID="Ids2" X="426" Y="194" DESCRIPTION="REJECTED_CUSTOMERS" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="SAMPLE" TOOLPREFIX="Ids">
+<PROPERTIES DataSource="rejectedcustomers" Scope="LOCAL" Role="SCORE" Library="FINANCE" Table="REJECTED_CUSTOMERS" NCols="26" NObs="1500" NBytes="525312" Segment="" DataSourceRole="RAW" OutputType="VIEW" ForceRun="N" ComputeStatistics="N" DataSelection="DATASOURCE" NewTable="" MetaAdvisor="BASIC" ApplyIntervalLevelLowerLimit="Y" IntervalLowerLimit="20" ApplyMaxPercentMissing="Y" MaxPercentMissing="50" ApplyMaxClassLevels="Y" MaxClassLevels="20" IdentifyEmptyColumns="Y" VariableValidation="STRICT" NewVariableRole="REJECT" DropMapVariables="Y" DsId="rejectedcustomers" DsSampleName="" DsSampleSizeType="" DsSampleSize="" DsCreatedBy="andre" DsCreateDate="1895150408.5" DsModifiedBy="andre" DsModifyDate="1895150408.6" DsScope="LOCAL" Sample="D" SampleSizeType="PERCENT" SampleSizePercent="20" SampleSizeObs="10000" DBPassThrough="Y" RunAction="Train" Component="DataSource" Description="">
+<VariableProperties/>
+<EmVariableAttributes>
+<DELTA Variable="AGE" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="AGE" AttributeName="DROP" AttributeValue="Y"/>
+<DELTA Variable="INC" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="INC" AttributeName="DROP" AttributeValue="Y"/>
+<DELTA Variable="INC1" AttributeName="ROLE" AttributeValue="REJECTED"/>
+<DELTA Variable="INC1" AttributeName="DROP" AttributeValue="Y"/>
+</EmVariableAttributes>
+<EmTargetAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMSAMP.EMDPART.CLASS" COMPONENT="Partition" ID="Part" X="198" Y="111" DESCRIPTION="Data Partition" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="SAMPLE" TOOLPREFIX="Part">
+<PROPERTIES Method="DEFAULT" TrainPct="70" ValidatePct="30" TestPct="0" RandomSeed="12345" OutputType="DATA" IntervalDistribution="Y" ClassDistribution="Y" ForceRun="N" RunAction="Train" Component="Partition">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMSAMP.EMDPART.CLASS" COMPONENT="Partition" ID="Part2" X="290" Y="452" DESCRIPTION="Data Partition (After RejInf)" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="SAMPLE" TOOLPREFIX="Part">
+<PROPERTIES Method="DEFAULT" TrainPct="70" ValidatePct="30" TestPct="0" RandomSeed="12345" OutputType="DATA" IntervalDistribution="Y" ClassDistribution="Y" ForceRun="N" RunAction="Train" Component="Partition">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMCORE.EXTENSION.CLASS" COMPONENT="RejectInference" ID="RejInf" X="200" Y="387" DESCRIPTION="Reject Inference" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="CREDSCORE" TOOLPREFIX="RejInf">
+<PROPERTIES Location="CATALOG" Catalog="SASHELP.EMCREDIT.REJECTINFERENCE.SOURCE" DataNeeded="Y" RejectRate="0.25" RateIncrease="1.0" CutOffScore="400" MinScore="0" MaxScore="250" RandomSeed="12345" NumScoreBuckets="25" InferenceMethod="FUZZY" ScoreRangeMethod="ACCEPTS" ForceRun="N" RunAction="Train" Component="RejectInference">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<USERTRAINCODE Type="EXTERNAL" Extension="sas">
+<Data/>
+</USERTRAINCODE>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMCORE.EXTENSION.CLASS" COMPONENT="RejectInference" ID="RejInf2" X="424" Y="390" DESCRIPTION="RI (Hard Cutoff)" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="CREDSCORE" TOOLPREFIX="RejInf">
+<PROPERTIES Location="CATALOG" Catalog="SASHELP.EMCREDIT.REJECTINFERENCE.SOURCE" DataNeeded="Y" RejectRate="0.25" RateIncrease="1" CutOffScore="400" MinScore="0" MaxScore="250" RandomSeed="12345" NumScoreBuckets="25" InferenceMethod="FUZZY" ScoreRangeMethod="ACCEPTS" ForceRun="N" RunAction="Train" Component="RejectInference">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmFileProperties>
+<USERTRAINCODE Type="EXTERNAL" Extension="sas">
+<Data/>
+</USERTRAINCODE>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMCREDIT.SCORECARD.CLASS" COMPONENT="Scorecard" ID="Scorecard" X="198" Y="259" DESCRIPTION="Scorecard (preliminary)" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="MODEL" TOOLPREFIX="Scorecard">
+<PROPERTIES freeze="NONE" generateIntercept="N" reverseScore="N" useIndet="N" odds="20" scorecardPoints="500" pointsToDoubleOdds="50" scorecardType="DETAILED" noInfo="NEUTRAL" reportAdverse="N" numAdverse="3" numberOfBuckets="25" bucketMethod="MINMAX" revenueAcceptedGood="2000" costAcceptedBad="52000" currentApprovalRate="75" badRate="3.23" precision="0" generateCharacteristicAnalysis="N" displayNoInfo="N" ModelSelection="BACKWARD" SelectionCriterion="DEFAULT" SelectionDefault="N" SlEntry="0.02" SlStay="0.02" Start="0" Stop="0" Force="0" Hierarchy="CLASS" Rule="NONE" MaxStep="." analysisVariables="WOE" scoreOutvars="COMPLETE" ForceRun="N" RunAction="Train" Component="Scorecard" Sequential="N">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+<MODELORDER Type="DATA">
+<Data>
+<Obs NAME="WOE_CARDS" VARIABLE="WOE_CARDS" KEY="1"/>
+<Obs NAME="WOE_EC_CARD" VARIABLE="WOE_EC_CARD" KEY="2"/>
+<Obs NAME="WOE_TMJOB1" VARIABLE="WOE_TMJOB1" KEY="4"/>
+</Data>
+<Metadata>
+<Variable NAME="NAME" LABEL="Variable Name" LENGTH="64" FORMAT="" TYPE="C"/>
+<Variable NAME="variable" LABEL="" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="key" LABEL="" LENGTH="8" FORMAT="" TYPE="N"/>
+</Metadata>
+</MODELORDER>
+<ADVERSEVAR Type="DATA">
+<Data/>
+<Metadata/>
+</ADVERSEVAR>
+<SCORECARD Type="DATA">
+<Data>
+<Obs _VARIABLE_="CARDS" _GROUP_="-2" _LABEL_="Neutral Score" _WOE_="." MANUALWOE="." _PERCENT_="." _EVENT_RATE_="." SCORECARD_POINTS="265" _NO_INFO_="." _ESTIMATE_="." LABEL="Credit Cards"/>
+<Obs _VARIABLE_="CARDS" _GROUP_="1" _LABEL_="AMERICAN EXPRESS, NO CREDIT CARDS, VISA MYBANK, VISA OTHERS, _MISSING_, _UNKNOWN_" _WOE_="-0.258425462" MANUALWOE="." _PERCENT_="62.072570726" _EVENT_RATE_="4.141484197" SCORECARD_POINTS="245" _NO_INFO_="264.5674211" _ESTIMATE_="-1.028228906" LABEL="Credit Cards"/>
+<Obs _VARIABLE_="CARDS" _GROUP_="2" _LABEL_="CHEQUE CARD, MASTERCARD/EUROC, OTHER CREDIT CAR" _WOE_="0.6363916977" MANUALWOE="." _PERCENT_="37.927429274" _EVENT_RATE_="1.7350413491" SCORECARD_POINTS="312" _NO_INFO_="264.5674211" _ESTIMATE_="-1.028228906" LABEL="Credit Cards"/>
+<Obs _VARIABLE_="TMJOB1" _GROUP_="-2" _LABEL_="Neutral Score" _WOE_="." MANUALWOE="." _PERCENT_="." _EVENT_RATE_="." SCORECARD_POINTS="265" _NO_INFO_="." _ESTIMATE_="." LABEL="Time at Job"/>
+<Obs _VARIABLE_="TMJOB1" _GROUP_="1" _LABEL_="TMJOB1&lt; 49.95, _MISSING_" _WOE_="-0.249955255" MANUALWOE="." _PERCENT_="52.62300123" _EVENT_RATE_="4.1079880792" SCORECARD_POINTS="246" _NO_INFO_="264.5674211" _ESTIMATE_="-1.030882884" LABEL="Time at Job"/>
+<Obs _VARIABLE_="TMJOB1" _GROUP_="2" _LABEL_="49.95&lt;= TMJOB1&lt; 149.85" _WOE_="0.1453808186" MANUALWOE="." _PERCENT_="27.524600246" _EVENT_RATE_="2.8041559602" SCORECARD_POINTS="275" _NO_INFO_="264.5674211" _ESTIMATE_="-1.030882884" LABEL="Time at Job"/>
+<Obs _VARIABLE_="TMJOB1" _GROUP_="3" _LABEL_="149.85&lt;= TMJOB1" _WOE_="0.793190918" MANUALWOE="." _PERCENT_="19.852398524" _EVENT_RATE_="1.4869888476" SCORECARD_POINTS="324" _NO_INFO_="264.5674211" _ESTIMATE_="-1.030882884" LABEL="Time at Job"/>
+</Data>
+<Metadata>
+<Variable NAME="_variable_" LABEL="Variable" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="_group_" LABEL="Group" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="_label_" LABEL="Label" LENGTH="200" FORMAT="" TYPE="C"/>
+<Variable NAME="_woe_" LABEL="Weight of Evidence" LENGTH="8" FORMAT="8.5" TYPE="N"/>
+<Variable NAME="manualWoe" LABEL="Manual WOE" LENGTH="8" FORMAT="8.5" TYPE="N"/>
+<Variable NAME="_percent_" LABEL="" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="_event_rate_" LABEL="Event Rate GB = 1" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="SCORECARD_POINTS" LABEL="Scorecard Points" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="_no_info_" LABEL="" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="_ESTIMATE_" LABEL="" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="LABEL" LABEL="Label" LENGTH="200" FORMAT="" TYPE="C"/>
+</Metadata>
+</SCORECARD>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMCREDIT.SCORECARD.CLASS" COMPONENT="Scorecard" ID="Scorecard2" X="473" Y="580" DESCRIPTION="Final Scorecard" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="MODEL" TOOLPREFIX="Scorecard">
+<PROPERTIES freeze="NONE" generateIntercept="N" reverseScore="N" useIndet="N" odds="20" scorecardPoints="500" pointsToDoubleOdds="50" scorecardType="SUMMARY" noInfo="NEUTRAL" reportAdverse="N" numAdverse="3" numberOfBuckets="25" bucketMethod="MINMAX" revenueAcceptedGood="2000" costAcceptedBad="52000" currentApprovalRate="75" badRate="3.23" precision="0" generateCharacteristicAnalysis="N" displayNoInfo="N" ModelSelection="BACKWARD" SelectionCriterion="DEFAULT" SelectionDefault="N" SlEntry="0.02" SlStay="0.02" Start="0" Stop="0" Force="0" Hierarchy="CLASS" Rule="NONE" MaxStep="." analysisVariables="WOE" scoreOutvars="COMPLETE" ForceRun="N" RunAction="Train" Component="Scorecard" Sequential="N">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+<MODELORDER Type="DATA">
+<Data>
+<Obs NAME="WOE_CARDS" VARIABLE="" KEY="."/>
+<Obs NAME="WOE_EC_CARD" VARIABLE="" KEY="."/>
+<Obs NAME="WOE_TMJOB1" VARIABLE="" KEY="."/>
+</Data>
+<Metadata>
+<Variable NAME="NAME" LABEL="Variable Name" LENGTH="64" FORMAT="" TYPE="C"/>
+<Variable NAME="variable" LABEL="" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="key" LABEL="" LENGTH="8" FORMAT="" TYPE="N"/>
+</Metadata>
+</MODELORDER>
+<ADVERSEVAR Type="DATA">
+<Data/>
+<Metadata/>
+</ADVERSEVAR>
+<SCORECARD Type="DATA">
+<Data>
+<Obs _VARIABLE_="CARDS" _GROUP_="-2" _LABEL_="Neutral Score" _WOE_="." MANUALWOE="." _PERCENT_="." _EVENT_RATE_="." SCORECARD_POINTS="262" _NO_INFO_="." _ESTIMATE_="." LABEL="Credit Cards"/>
+<Obs _VARIABLE_="CARDS" _GROUP_="1" _LABEL_="AMERICAN EXPRESS, NO CREDIT CARDS, VISA CITIBANK, VISA MYBANK, _MISSING_, _UNKNOWN_" _WOE_="-0.2103121" MANUALWOE="." _PERCENT_="68.640829061" _EVENT_RATE_="4.2888700407" SCORECARD_POINTS="246" _NO_INFO_="261.51915955" _ESTIMATE_="-1.0144143" LABEL="Credit Cards"/>
+<Obs _VARIABLE_="CARDS" _GROUP_="2" _LABEL_="CHEQUE CARD, MASTERCARD/EUROC, OTHER CREDIT CAR, VISA OTHERS" _WOE_="0.6916948648" MANUALWOE="." _PERCENT_="31.359170939" _EVENT_RATE_="1.7857387624" SCORECARD_POINTS="312" _NO_INFO_="261.51915955" _ESTIMATE_="-1.0144143" LABEL="Credit Cards"/>
+<Obs _VARIABLE_="TMJOB1" _GROUP_="-2" _LABEL_="Neutral Score" _WOE_="." MANUALWOE="." _PERCENT_="." _EVENT_RATE_="." SCORECARD_POINTS="262" _NO_INFO_="." _ESTIMATE_="." LABEL="Time at Job"/>
+<Obs _VARIABLE_="TMJOB1" _GROUP_="1" _LABEL_="TMJOB1&lt; 49.95, _MISSING_" _WOE_="-0.225284941" MANUALWOE="." _PERCENT_="56.368070422" _EVENT_RATE_="4.3507534525" SCORECARD_POINTS="245" _NO_INFO_="261.51915955" _ESTIMATE_="-1.010571285" LABEL="Time at Job"/>
+<Obs _VARIABLE_="TMJOB1" _GROUP_="2" _LABEL_="49.95&lt;= TMJOB1&lt; 99.9" _WOE_="0.1177944768" MANUALWOE="." _PERCENT_="18.369290719" _EVENT_RATE_="3.1267186428" SCORECARD_POINTS="270" _NO_INFO_="261.51915955" _ESTIMATE_="-1.010571285" LABEL="Time at Job"/>
+<Obs _VARIABLE_="TMJOB1" _GROUP_="3" _LABEL_="99.9&lt;= TMJOB1&lt; 149.85" _WOE_="0.2218724381" MANUALWOE="." _PERCENT_="8.1787531994" _EVENT_RATE_="2.8264089799" SCORECARD_POINTS="278" _NO_INFO_="261.51915955" _ESTIMATE_="-1.010571285" LABEL="Time at Job"/>
+<Obs _VARIABLE_="TMJOB1" _GROUP_="4" _LABEL_="149.85&lt;= TMJOB1" _WOE_="0.9106213188" MANUALWOE="." _PERCENT_="17.083885659" _EVENT_RATE_="1.4396724892" SCORECARD_POINTS="328" _NO_INFO_="261.51915955" _ESTIMATE_="-1.010571285" LABEL="Time at Job"/>
+</Data>
+<Metadata>
+<Variable NAME="_variable_" LABEL="Variable" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="_group_" LABEL="Group" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="_label_" LABEL="Label" LENGTH="200" FORMAT="" TYPE="C"/>
+<Variable NAME="_woe_" LABEL="Weight of Evidence" LENGTH="8" FORMAT="8.5" TYPE="N"/>
+<Variable NAME="manualWoe" LABEL="Manual WOE" LENGTH="8" FORMAT="8.5" TYPE="N"/>
+<Variable NAME="_percent_" LABEL="" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="_event_rate_" LABEL="Event Rate GB = 1" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="SCORECARD_POINTS" LABEL="Scorecard Points" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="_no_info_" LABEL="" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="_ESTIMATE_" LABEL="" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="LABEL" LABEL="Label" LENGTH="200" FORMAT="" TYPE="C"/>
+</Metadata>
+</SCORECARD>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMEXPL.STATEXPLORE.CLASS" COMPONENT="StatExplore" ID="Stat" X="449" Y="111" DESCRIPTION="StatExplore" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="EXPLORE" TOOLPREFIX="Stat">
+<PROPERTIES BySegment="N" Correlation="Y" Spearman="N" Pearson="Y" ChiSquare="Y" ChiSquareInterval="N" ChiSquareIntervalNBins="5" MaximumVars="1000" HideVariable="Y" DropRejected="Y" UseValidate="N" UseTest="N" UseScore="N" NObs="100000" IntervalDistribution="Y" ClassDistribution="Y" LevelSummary="Y" ForceRun="N" RunAction="Train" Component="StatExplore">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmFileProperties>
+<CROSSTAB Type="DATA">
+<Data/>
+<Metadata/>
+</CROSSTAB>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+</NODES>
+<CONNECTIONS>
+<CONNECTION FROM="Part" TO="IGN"/>
+<CONNECTION FROM="IGN" TO="Scorecard"/>
+<CONNECTION FROM="Scorecard" TO="RejInf2"/>
+<CONNECTION FROM="Scorecard" TO="RejInf"/>
+<CONNECTION FROM="Part2" TO="IGN2"/>
+<CONNECTION FROM="IGN2" TO="Scorecard2"/>
+<CONNECTION FROM="Ids" TO="Stat"/>
+<CONNECTION FROM="RejInf" TO="Part2"/>
+<CONNECTION FROM="Ids" TO="Drop"/>
+<CONNECTION FROM="Ids2" TO="Drop2"/>
+<CONNECTION FROM="Drop" TO="Part"/>
+<CONNECTION FROM="Drop2" TO="RejInf2"/>
+<CONNECTION FROM="Drop2" TO="RejInf"/>
+</CONNECTIONS>
+<NOTES>
+<DATA><![CDATA[
+
+
+
+
+]]>
+</DATA>
+</NOTES>
+</Workspace>
+</_ROOT_>
