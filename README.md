@@ -17,9 +17,11 @@ Spring 1 Orange 5 HW repo
 
 # Basic Setup Instructions (Command line - Use Git Bash)
  - After being added as a collaborator, clone the repo where you want it
+ - You only need to do this **once**
  ```
  git clone https://github.com/gclark422/spring1-orange5.git
- ```
+ ```  
+ 
  - Make any changes/add any files then do the following:
  ```
  git status
