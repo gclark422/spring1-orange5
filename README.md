@@ -5,12 +5,13 @@ Spring 1 Orange 5 HW repo
 
 | Done?                    | Assignment               | Due Date |
 |--------------------------|--------------------------|----------|
-| :heavy_multiplication_x: | Financial Analytics HW 1 |   1/24   |
-| :heavy_multiplication_x: | Financial Analytics HW 2 |   3/23   |
+| :heavy_check_mark:       | Financial Analytics HW 1 |   1/24   |
 | :heavy_multiplication_x: | Simulation & Risk HW 1   |   2/5    |
+| :heavy_multiplication_x: | Optimization Project     |   2/7    |
 | :heavy_multiplication_x: | Simulation & Risk HW 2   |   2/17   |
 | :heavy_multiplication_x: | Simulation & Risk HW 3   |   2/26   |
-| :heavy_multiplication_x: | Optimization Project     |   2/7    |
+| :heavy_multiplication_x: | Financial Analytics HW 2 |   3/23   |
+
 
 
 
