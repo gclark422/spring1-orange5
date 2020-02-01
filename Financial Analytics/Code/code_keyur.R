@@ -96,9 +96,9 @@ names(variables) <- variables
 results <- purrr::map2(variables,
                        variables_classes,
                        ~if (.y == "factor") {
-                         smbinning::smbinning.factor(df = train, y = "GB", x = .x)
+                         smbinning::smbinning.factor(df = train, y = "good", x = .x)
                        } else {
-                         smbinning::smbinning(df = train, y = "GB", x = .x)
+                         smbinning::smbinning(df = train, y = "good", x = .x)
                        })
 
 # Function to include the binned variable in the data set
