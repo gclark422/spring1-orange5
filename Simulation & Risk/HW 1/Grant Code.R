@@ -210,7 +210,7 @@ quantile(P19_kde, .99)
 
 
 # Bulding qqplot to check normality of years 2006-2012
-set.seed(303)
+set.seed(12345)
 avg <- mean(combined$ret)
 stdev <- sd(combined$ret)
 P5 <- rep(0, 10000)
