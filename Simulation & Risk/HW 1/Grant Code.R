@@ -120,12 +120,13 @@ for (i in 1:1e5) {
 mean(P19)
 sd(P19)
 c(quantile(P19, .25), quantile(P19, .5), quantile(P19, .75))
+c(quantile(P19, .05), quantile(P19, .95))
 
 
 # computation of the standard error of the mean
 sem <- sd(P19) / sqrt(length(P19))
 # 95% confidence intervals of the mean
-c(mean(P19) - 1.96 * sem, mean(P19) + 1.96 * sem)
+c(median(P19) - 1.96 * sem, median(P19) + 1.96 * sem)
 
 ggplot(tibble(pred = P19), aes(pred)) +
   geom_histogram(fill = 'lightblue', color = 'blue') + 
