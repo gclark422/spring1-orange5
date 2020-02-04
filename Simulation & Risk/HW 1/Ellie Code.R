@@ -67,7 +67,7 @@ qqnorm(final_48$final_48, pch=1)
 qqline(final_48$final_48, col = "steelblue", lwd = 2)
 #Looks normal
 
-#Check normality with Sharipo Wilk test
+#Check normality with Shapiro Wilk test
 shapiro.test(final_48$final_48)
 #Fail to reject null and conclude that data is from normal 
 
@@ -82,8 +82,8 @@ hist(Est.Pt, breaks=50, main='Estimated 1991-2006 Distribution', xlab='Final Val
 
 #Run simulation for 2006-2012 using Normal Distribution
 set.seed(12345)
-P_2006_2012_n <- rep(0,10000)
-for(i in 1:10000){
+P_2006_2012_n <- rep(0,100000)
+for(i in 1:100000){
   P0 <- avg_cost_2006
   r <- rnorm(n=1, mean=mean_data, sd=sd_data)
   Pt_n <- P0*(1 + r)
@@ -104,13 +104,13 @@ mtext("2006 Avg Cost", at=avg_cost_2006, col="red")
 
 #Run loop for 2012-2015 using Triangular Distribution 
 set.seed(12345)
-P_2012_2015_n <- rep(0,10000)
-for(i in 1:10000){
+P_2012_2015_n <- rep(0,100000)
+for(i in 1:100000){
   P0 <- P_2006_2012_n[i]
   r <- rtri(n=1, min=-0.22, max=-0.07, mode=-0.0917)
   Pt_n <- P0*(1 + r)
   
-  for(j in 1:3){
+  for(j in 1:2){
     r <- rtri(n=1, min=-0.22, max=-0.07, mode=-0.0917)
     Pt_n <- Pt_n*(1+r)
   }
@@ -124,10 +124,10 @@ hist(P_2012_2015_n, breaks=50)
 abline(v = avg_cost_2006, col="red", lwd=2)
 mtext("2006 Avg Cost", at=avg_cost_2006, col="red")
 
-#Run loop for 2015-2019 using Triangular Distribution
+#Run loop for 2015-2020 using Triangular Distribution
 set.seed(12345)
-P_2015_2019_n <- rep(0,10000)
-for(i in 1:10000){
+P_2015_2020_n <- rep(0,100000)
+for(i in 1:100000){
   P0 <- P_2012_2015_n[i]
   r <- rtri(n=1, min=0.02, max=0.06, mode=0.05)
   Pt_n <- P0*(1 + r)
@@ -136,27 +136,21 @@ for(i in 1:10000){
     r <- rtri(n=1, min=0.02, max=0.06, mode=0.05)
     Pt_n <- Pt_n*(1+r)
   }
-  P_2015_2019_n[i] <- Pt_n
+  P_2015_2020_n[i] <- Pt_n
 }
 
-mean(P_2015_2019_n)
-sd(P_2015_2019_n)
+mean(P_2015_2020_n)
+sd(P_2015_2020_n)
+min(P_2015_2020_n)
+max(P_2015_2020_n)
+median(P_2015_2020_n)
+quantile(P_2015_2020_n, c(0.25, 0.5, 0.75))
 
-hist(P_2015_2019_n, breaks=50)
+hist(P_2015_2020_n, breaks=50)
 abline(v = avg_cost_2006, col="red", lwd=2)
 mtext("2006 Avg Cost", at=avg_cost_2006, col="red")
 
-#Predict for 2020
-set.seed(12345)
-P_2020_n <- rep(0,10000)
-for(i in 1:10000) {
-  P0 <- P_2015_2019_n[i]
-  r <- rtri(n=1, min=0.02, max=0.06, mode=0.05)
-  Pt_n <- P0*(1+r)
-  P_2020_n[i] <- Pt_n
-}
-min(P_2020_n)
-max(P_2020_n)
+
 hist(P_2020_n, breaks=50)
 abline(v = avg_cost_2006, col="red", lwd=2)
 mtext("2006 Avg Cost", at=avg_cost_2006, col="red")
@@ -193,7 +187,7 @@ for(i in 1:10000){
   r <- rtri(n=1, min=-0.22, max=-0.07, mode=-0.0917)
   Pt_kd <- P0*(1 + r)
   
-  for(j in 1:3){
+  for(j in 1:2){
     r <- rkde(fhat=kde(final_48$final_48, h=0.07935), n=1)
     Pt_kd <- Pt_kd*(1+r)
   }
@@ -209,7 +203,7 @@ mtext("2006 Avg Cost", at=avg_cost_2006, col="red")
 
 #Run loop for 2015-2019 using Triangular Distribution
 set.seed(12345)
-P_2015_2019_kd <- rep(0,10000)
+P_2015_2020_kd <- rep(0,10000)
 for(i in 1:10000){
   P0 <- P_2012_2015_kd[i]
   r <- rkde(fhat=kde(final_48$final_48, h=0.07935), n=1)
@@ -219,27 +213,16 @@ for(i in 1:10000){
     r <- rtri(n=1, min=0.02, max=0.06, mode=0.05)
     Pt_kd <- Pt_kd*(1+r)
   }
-  P_2015_2019_kd[i] <- Pt_kd
+  P_2015_2020_kd[i] <- Pt_kd
 }
 
-mean(P_2015_2019_kd)
-sd(P_2015_2019_kd)
+mean(P_2015_2020_kd)
+sd(P_2015_2020_kd)
+min(P_2015_2020_kd)
+max(P_2015_2020_kd)
+quantile(P_2015_2020_kd, c(0.25, 0.5, 0.75))
 
-hist(P_2015_2019_kd, breaks=50)
+hist(P_2015_2020_kd, breaks=50)
 abline(v = avg_cost_2006, col="red", lwd=2)
 mtext("2006 Avg Cost", at=avg_cost_2006, col="red")
 
-#Predict for 2020
-set.seed(12345)
-P_2020_kd <- rep(0,10000)
-for(i in 1:10000) {
-  P0 <- P_2015_2019_kd[i]
-  r <- rkde(fhat=kde(final_48$final_48, h=0.07935), n=1)
-  Pt_kd <- P0*(1+r)
-  P_2020_kd[i] <- Pt_kd
-}
-min(P_2020_kd)
-max(P_2020_kd)
-hist(P_2020_kd, breaks=50)
-abline(v = avg_cost_2006, col="red", lwd=2)
-mtext("2006 Avg Cost", at=avg_cost_2006, col="red")
