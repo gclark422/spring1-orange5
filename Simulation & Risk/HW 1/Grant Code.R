@@ -49,7 +49,6 @@ ggplot(long_dat, aes(year, value, color = var)) +
 
 ## -----------------------------------------------------------------------------
 # look at histograms of all the values
-# look at time series plots for all values
 ggplot(long_dat, aes(value)) +
   geom_histogram(aes(fill = var, color = "grey")) +
   geom_density(aes(y = ..density..), size = 1) +
@@ -89,8 +88,8 @@ set.seed(12345)
 avg_06 <- dplyr::select(combined, year, cost) %>% filter(year == 2006) %>% pull %>% mean
 avg <- mean(combined$ret)
 stdev <- sd(combined$ret)
-P19 <- rep(0, 1e4)
-for (i in 1:1e4) {
+P19 <- rep(0, 1e5)
+for (i in 1:1e5) {
   
   #
   P0 <- avg_06
@@ -104,7 +103,7 @@ for (i in 1:1e4) {
   }
   
   # 2013-2015
-  for (j in 1:3) {
+  for (j in 1:2) {
     r <- rtriangle(1, a = 0.07, b = 0.22, c = 0.0917)
     Pt <- Pt * (1 - r)
   }
@@ -120,18 +119,20 @@ for (i in 1:1e4) {
 
 mean(P19)
 sd(P19)
-c(quantile(P19, .1), quantile(P19, .9))
+c(quantile(P19, .25), quantile(P19, .5), quantile(P19, .75))
+c(quantile(P19, .05), quantile(P19, .95))
+
 
 # computation of the standard error of the mean
 sem <- sd(P19) / sqrt(length(P19))
 # 95% confidence intervals of the mean
-c(mean(P19) - 1.96 * sem, mean(P19) + 1.96 * sem)
+c(median(P19) - 1.96 * sem, median(P19) + 1.96 * sem)
 
 ggplot(tibble(pred = P19), aes(pred)) +
   geom_histogram(fill = 'lightblue', color = 'blue') + 
   annotate("text", x = avg_06, 
-           y = 1600, label = "2006 Cost", color = 'red', fontface = 2) + 
-  annotate("segment", x = avg_06, xend = avg_06, y = 0, yend = 1575, colour = "red", size = 1) + 
+           y = 16000, label = "2006 Cost", color = 'red', fontface = 2) + 
+  annotate("segment", x = avg_06, xend = avg_06, y = 0, yend = 15750, colour = "red", size = 1) + 
   theme_bw() +
   labs(x = "Final Cost Possibilities (in thousands of dollars)", 
        y = "Frequency of Possibilites", 
@@ -151,8 +152,8 @@ mtext("2006 Cost", at = avg_06, col = "red")
 set.seed(12345)
 
 den_obj<- density(combined$ret, bw="SJ-ste")
-P19_kde <- rep(0, 10000)
-for (i in 1:10000) {
+P19_kde <- rep(0, 100000)
+for (i in 1:100000) {
   
   #
   P0 <- avg_06
@@ -184,6 +185,8 @@ for (i in 1:10000) {
 mean(P19_kde)
 sd(P19_kde)
 max(P19_kde)
+min(P19_kde)
+c(quantile(P19_kde, .25), quantile(P19_kde, .5), quantile(P19_kde, .75))
 # computation of the standard error of the mean
 sem_kde <- sd(P19_kde) / sqrt(length(P19_kde))
 # 95% confidence intervals of the mean
@@ -241,3 +244,4 @@ ggplot(combined, aes(sample = ret)) +
        y = "Simulated Costs (in thousands of dollars)", 
        title = "Quantile - Quantile Plot for Cost Changes between 1991-2006") +
   theme(plot.title = element_text(hjust = 0.5, face = 'bold', size = 12))
+
