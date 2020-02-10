@@ -73,10 +73,10 @@ ggplot2::ggplot(PN, ggplot2::aes(x = value)) +
   ggplot2::scale_x_continuous(labels = scales::dollar_format()) +
   ggplot2::geom_vline(linetype = "dashed", data = NULL, mapping = ggplot2::aes(xintercept = 2279.8, colour = "avg_cost")) +
   ggplot2::scale_colour_manual(values = c("#FD625E"), name = "", labels = c("Average Cost in 2006")) +
-  ggplot2::ggtitle("Normal Distribution Simulation")+
+  #ggplot2::ggtitle("Normal Distribution Simulation")+
   ggplot2::theme(legend.position = c(0.75, 0.75),
                  panel.grid.minor.y = ggplot2::element_blank())
-
+ggplot2::ggsave("simulation_normal_kyle.png", device = "png")
 
 ########################################### Second Simulation Code with Density Estimation ###################################################
 
@@ -127,7 +127,7 @@ ggplot2::ggplot(PD, ggplot2::aes(x = value)) +
   ggplot2::ggtitle("Kernel Estimate Simulation")+
   ggplot2::theme(legend.position = c(0.75, 0.75),
                  panel.grid.minor.y = ggplot2::element_blank())
-
+ggplot2::ggsave("simulation_kernel_density_kyle.png", device = "png")
 
 ################################################## Checking Normality of the changes ###########################################################
 
