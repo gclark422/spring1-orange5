@@ -22,7 +22,7 @@ library(nortest)
 setwd("C:/Users/k_cla/OneDrive/Desktop/MSA Program/spring1-orange5/Simulation & Risk/Data/")
 
 data = read.csv(file = 'Kyle 48 Obs.csv')
-data = rename(data, 'changes' = 'Ã¯..changes')
+data = rename(data, 'changes' = 'ï..changes')
 
 # Setting a seed
 set.seed(12345)
@@ -77,6 +77,9 @@ ggplot2::ggplot(PN, ggplot2::aes(x = value)) +
   ggplot2::theme(legend.position = c(0.75, 0.75),
                  panel.grid.minor.y = ggplot2::element_blank())
 ggplot2::ggsave("simulation_normal_kyle.png", device = "png")
+
+# Saving out the final distribution
+write.csv(PN,"kyle_drilling_costs.csv", row.names = FALSE)
 
 ########################################### Second Simulation Code with Density Estimation ###################################################
 
