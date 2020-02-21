@@ -120,10 +120,10 @@ dip.r <- t(dip.r)
 
 final.dip.r <- cbind(destandardize(dip.r[,1], Pt_decline), destandardize(dip.r[,2], Pt_IP))
 
+#Simulate NPV for wet wells
 for(k in 1:100000) {
   
   npv <- rep(0, wet_wells[k])
-  dry_well_cost <- rep(0, dry_wells[k])
   
   for(j in 1:wet_wells[k]) {
     
@@ -195,19 +195,24 @@ for(k in 1:100000) {
   }
   
   overall_npv_wet[k] = sum(npv)
+
+}
+
+#Simulate dry well costs
+for (k in 1:100000) {
   
+  dry_well_cost <- rep(0, dry_wells[k])
+
   for(j in 1:dry_wells[k]) {
     
-    set.seed(12345)
-    
     #Lease cost
-    Pt_lease <- 960 * (rnorm(n=100000, mean=600, sd=50))
+    Pt_lease <- 960 * (rnorm(n=1, mean=600, sd=50))
     
     #Seismic costs
-    Pt_seis <- 43000 * (rnorm(n=100000, mean=3, sd=0.35))
+    Pt_seis <- 43000 * (rnorm(n=1, mean=3, sd=0.35))
     
     #Professional overhead
-    Pt_prof <- rtri(n=100000, min=172000, max=279500, mode=215000)
+    Pt_prof <- rtri(n=1, min=172000, max=279500, mode=215000)
     
     dry_well_cost[j] = drilling_costs + Pt_lease + Pt_seis + Pt_prof
     
@@ -217,22 +222,56 @@ for(k in 1:100000) {
 
 }
 
+#Look at histograms for wet NPV and dry costs
 hist(overall_npv_wet, breaks=50)
 hist(overall_cost_dry, breaks=50)
 
+#Calculate overall NPV by subtracting dry well costs from wet well NPV
 overall_npv = overall_npv_wet - overall_cost_dry
 
+#Look at histogram ofo overall NPV
 hist(overall_npv, breaks=50)
 summary(overall_npv)
 
-#Check for normality
-qqplot(overall_npv)
+#VaR 1%
+VaR = quantile(overall_npv, 0.01)
+#$62,353,216
 
-#Not normal
-#Historical data approach so need to sort data to find worst possible cases
-npv_sort <- sort(overall_npv)
+#ES 1%
+ES <- mean(overall_npv[overall_npv < VaR], na.rm=TRUE)
 
-#Of 100,000 simulations, we need 1,000 below our VaR
-Var.1p <- npv_sort[1001]
-Var.1p
+#VaR Confidence Interval
+n.bootstraps <- 1000
+sample.size <- 1000
 
+VaR.boot <- rep(0,n.bootstraps)
+ES.boot <- rep(0,n.bootstraps)
+for(i in 1:n.bootstraps){
+  bootstrap.sample <- sample(overall_npv, size=sample.size)
+  VaR.boot[i] <- quantile(bootstrap.sample, 0.01, na.rm=TRUE)
+  ES.boot[i] <- mean(bootstrap.sample[bootstrap.sample < VaR.boot[i]], na.rm=TRUE)
+}
+
+VaR.boot.U <- quantile(VaR.boot, 0.975, na.rm=TRUE)
+VaR.boot.L <- quantile(VaR.boot, 0.025, na.rm=TRUE)
+VaR.boot.L
+VaR
+VaR.boot.U
+
+#Lower: $50,573,262
+#Median: $62,353,216
+#Upper: $77,035,417
+
+ES.boot.U <- quantile(ES.boot, 0.975, na.rm=TRUE)
+ES.boot.L <- quantile(ES.boot, 0.025, na.rm=TRUE)
+ES.boot.L
+ES
+ES.boot.U
+
+#Lower: $32,296,466
+#Median: $44,812,325
+#Upper: $60,372,041
+
+#Year 0 cost to overall_NPV
+year_0_to_end <- (median(wet_wells) * 15050000)/(median(dry_wells) * 4610000)
+year_0_to_end
