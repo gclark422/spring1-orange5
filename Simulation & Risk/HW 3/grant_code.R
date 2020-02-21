@@ -94,7 +94,7 @@ resv_plot = ggplot(tibble(pred = resv), aes(pred)) +
   theme_bw() + 
   labs(x = "Probability of Reserviors", 
        y = "Frequency", 
-       title = "Figure 3: Histogram of Reservior Probabilities") +
+       title = "Histogram of Reservior Probabilities") +
   theme(plot.title = element_text(hjust = 0.5,face = 'bold')) #, size = 12
 
 
