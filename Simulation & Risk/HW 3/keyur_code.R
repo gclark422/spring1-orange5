@@ -218,6 +218,11 @@ prop_wet <- n_wet / n_wells
 prop_wet_df <- data.frame(value = prop_wet)
 xlsx::write.xlsx2(prop_wet_df, "data/out/Simulated Proportion of Wet Wells.xlsx", sheetName = "Simulations", row.names = FALSE)
 
+temp_df <- data.frame(x = quantile(prop_wet, 0.05),
+                      y = 4500,
+                      xend = 0.5,
+                      yend = 7500)
+
 ggplot2::ggplot(prop_wet_df, ggplot2::aes(x = value)) +
   ggplot2::geom_histogram(fill = "#01B8AA", colour = "white") +
   ggplot2::geom_hline(yintercept = 0) +
@@ -225,8 +230,26 @@ ggplot2::ggplot(prop_wet_df, ggplot2::aes(x = value)) +
   ggplot2::scale_y_continuous(labels = scales::comma_format(), limits = c(NA, 12000), breaks = seq(0, 12000, by = 3000)) +
   ggplot2::scale_x_continuous(labels = scales::percent_format(accuracy = 1)) +
   ggplot2::theme(legend.position = c(0.75, 0.75),
-                 panel.grid.minor.y = ggplot2::element_blank())
+                 panel.grid.minor.y = ggplot2::element_blank()) +
+  ggplot2::geom_vline(xintercept = quantile(prop_wet, 0.05),
+                      colour = "#F17825",
+                      linetype = "dashed") +
+  ggplot2::geom_curve(data = temp_df,
+                      mapping = ggplot2::aes(x = x, xend = xend, y = y, yend = yend),
+                      curvature = -0.5,
+                      arrow = arrow(length = unit(0.25, "cm"), type = "closed"),
+                      arrow.fill = "#F17825",
+                      colour = "#F17825") +
+  ggplot2::annotate("text", x = 0.5, y = 7500, label = bquote(atop(underline(bold("95% VaR:")), .(scales::percent(quantile(prop_wet, 0.05), accuracy = 0.1)))),
+                    family = "tw_cen_mt",
+                    vjust = -0.2,
+                    colour = "grey30")
 ggplot2::ggsave("plots/Simulated Proportion of Wet Wells.png", device = "png", width = 6.77, height = 3.78)
+
+exp_shortfall <- function(x) {
+  p5 <- quantile(x, probs = 0.05)
+  mean(x[x <= p5])
+}
 
 funs <- c("Minimum" = min,
           "Maximum" = max,
@@ -236,9 +259,10 @@ funs <- c("Minimum" = min,
           "Third Quartile" = function(x) quantile(x, probs = 0.75),
           "95th Percentile" = function(x) quantile(x, probs = 0.95),
           "Mean" = mean,
-          "Standard Deviation" = sd)
+          "Standard Deviation" = sd,
+          "Expected Shortfall" = exp_shortfall)
 
-purrr::map_dbl(funs, ~.x(p_h)) %>%
+purrr::map_dbl(funs, ~.x(prop_wet)) %>%
   tibble::enframe(name = "Descriptive Statistic", value = "Proportion of Wet Wells") %>%
   as.data.frame(stringsAsFactors = FALSE) %>%
   xlsx::write.xlsx2("data/out/Simulated Proportion of Wet Wells.xlsx", sheetName = "Descriptive Statistics", append = TRUE, row.names = FALSE)
@@ -258,22 +282,7 @@ proj_npv <- tot_npv - tot_cost
 proj_npv_df <- data.frame(value = proj_npv)
 xlsx::write.xlsx2(proj_npv_df, "data/out/Simulated NPV of Project.xlsx", sheetName = "Simulations", row.names = FALSE)
 
-ggplot2::ggplot(proj_npv_df, ggplot2::aes(x = value)) +
-  ggplot2::geom_histogram(fill = "#01B8AA", colour = "white") +
-  ggplot2::geom_hline(yintercept = 0) +
-  ggplot2::labs(x = "Net Present Value of the Project", y = "Frequency") +
-  ggplot2::scale_y_continuous(labels = scales::comma_format()) +
-  ggplot2::scale_x_continuous(labels = scales::dollar_format(scale = 10 ^ (-6), suffix = "M")) +
-  ggplot2::theme(legend.position = c(0.75, 0.75),
-                 panel.grid.minor.y = ggplot2::element_blank())
-ggplot2::ggsave("plots/Simulated NPV of Project.png", device = "png", width = 6.77, height = 3.78)
-
 # Calculating the descriptive statistics of NPV
-exp_shortfall <- function(x) {
-  p5 <- quantile(x, probs = 0.05)
-  mean(x[x <= p5])
-}
-
 funs <- c("Minimum" = min,
           "Maximum" = max,
           "5th Percentile" = function(x) quantile(x, probs = 0.05),
@@ -285,7 +294,47 @@ funs <- c("Minimum" = min,
           "Standard Deviation" = sd,
           "Expected Shortfall" = exp_shortfall)
 
-purrr::map_dbl(funs, ~.x(proj_npv)) %>%
-  tibble::enframe(name = "Descriptive Statistic", value = "Net Present Value of Wet Well") %>%
-  as.data.frame(stringsAsFactors = FALSE) %>%
-  xlsx::write.xlsx2("data/out/Simulated NPV of Project.xlsx", sheetName = "Descriptive Statistics", append = TRUE, row.names = FALSE)
+desc_stats <- purrr::map_dbl(funs, ~.x(proj_npv)) %>%
+  tibble::enframe(name = "Descriptive Statistic", value = "Net Present Value of the Project") %>%
+  as.data.frame(stringsAsFactors = FALSE)
+
+xlsx::write.xlsx2(desc_stats, "data/out/Simulated NPV of Project.xlsx", sheetName = "Descriptive Statistics", append = TRUE, row.names = FALSE)
+
+temp_df <- data.frame(x = c(quantile(proj_npv, 0.05), mean(proj_npv)),
+                      y = c(8000, 4000),
+                      xend = c(25 * 10 ^ 6, 350 * 10 ^ 6),
+                      yend = c(6000, 6000),
+                      stat = c("var", "mean"))
+
+ggplot2::ggplot(proj_npv_df, ggplot2::aes(x = value)) +
+  ggplot2::geom_histogram(fill = "#01B8AA", colour = "white", alpha = 0.85) +
+  ggplot2::geom_hline(yintercept = 0) +
+  ggplot2::labs(x = "Net Present Value of the Project", y = "Frequency") +
+  ggplot2::scale_y_continuous(labels = scales::comma_format()) +
+  ggplot2::scale_x_continuous(labels = scales::dollar_format(scale = 10 ^ (-6), suffix = "M")) +
+  ggplot2::theme(legend.position = c(0.75, 0.75),
+                 panel.grid.minor.y = ggplot2::element_blank()) +
+  ggplot2::geom_vline(data = dplyr::filter(desc_stats, `Descriptive Statistic` %in% c("Mean", "5th Percentile")),
+                      mapping = ggplot2::aes(xintercept = `Net Present Value of the Project`, colour = `Descriptive Statistic`),
+                      linetype = "dashed",
+                      show.legend = FALSE) +
+  ggplot2::scale_colour_manual(values = c("#F17825", "#004753")) +
+  ggplot2::geom_curve(data = dplyr::filter(temp_df, stat == "var"),
+                      mapping = ggplot2::aes(x = x, xend = xend, y = y, yend = yend),
+                      curvature = 0.25,
+                      arrow = arrow(length = unit(0.25, "cm"), type = "closed"),
+                      colour = "#F17825",
+                      arrow.fill = "#F17825") +
+  ggplot2::geom_curve(data = dplyr::filter(temp_df, stat == "mean"),
+                      mapping = ggplot2::aes(x = x, xend = xend, y = y, yend = yend),
+                      curvature = 0.25,
+                      arrow = arrow(length = unit(0.25, "cm"), type = "closed"),
+                      colour = "#004753",
+                      arrow.fill = "#004753") +
+  ggplot2::annotate("text", x = 25 * 10 ^ 6, y = 6000,
+                    label = bquote(atop(underline(bold("95% VaR:")), .(scales::dollar(quantile(proj_npv, 0.05), accuracy = 0.1, suffix = "M", scale = 10 ^ -6)))),
+                    family = "tw_cen_mt", colour = "grey30", vjust = 1.2) +
+  ggplot2::annotate("text", x = 350 * 10 ^ 6, y = 6000,
+                    label = bquote(atop(underline(bold("Expected Return:")), .(scales::dollar(mean(proj_npv), accuracy = 0.1, suffix = "M", scale = 10 ^ -6)))),
+                    family = "tw_cen_mt", colour = "grey30", vjust = -0.2)
+ggplot2::ggsave("plots/Simulated NPV of Project.png", device = "png", width = 7.5, height = 3.78)
